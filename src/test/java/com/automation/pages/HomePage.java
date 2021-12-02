@@ -1,27 +1,30 @@
 package com.automation.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
-import com.automation.utils.DriverUtils;
+public class HomePage extends BasePage {
 
-public class HomePage {
+	@FindBy(id = "welcome")
+	WebElement userIcon;
 
-	WebDriver driver = DriverUtils.getDriver();
-	
+	@FindBy(xpath = "//a[text()='Logout']")
+	WebElement logoutLink;
+
+	public HomePage() {
+		PageFactory.initElements(driver, this);
+	}
+
 	public void clickOnUserIcon() {
-		WebElement userIcon = driver.findElement(By.id("welcome"));
 		userIcon.click();
 	}
 
 	public void clickOnLogoutLink() {
-		WebElement logoutLink = driver.findElement(By.xpath("//a[text()='Logout']"));
 		logoutLink.click();
 	}
 
 	public void verifyHomePage() {
-		WebElement userIcon = driver.findElement(By.id("welcome"));
 		System.out.println(userIcon.isDisplayed());
 	}
 

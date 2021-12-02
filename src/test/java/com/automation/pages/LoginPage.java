@@ -1,37 +1,39 @@
 package com.automation.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
-import com.automation.utils.DriverUtils;
+public class LoginPage extends BasePage {
 
-public class LoginPage {
+	@FindBy(xpath = "//input[@id='txtUsername']")
+	WebElement usernameInput;
 
-	WebDriver driver = DriverUtils.getDriver();
+	@FindBy(id = "txtPassword")
+	WebElement passwordInput;
+
+	@FindBy(id = "btnLogin")
+	WebElement loginBtn;
+
+	@FindBy(id = "spanMessage")
+	WebElement invalidLoginError;
+
+	public LoginPage() {
+		PageFactory.initElements(driver, this);
+	}
 
 	public void doLogin(String username, String password) {
-		WebElement usernameInput = driver.findElement(By.xpath("//input[@id='txtUsername']"));
 		usernameInput.sendKeys(username);
-
-		WebElement passwordInput = driver.findElement(By.id("txtPassword"));
 		passwordInput.sendKeys(password);
-
-		WebElement loginBtn = driver.findElement(By.id("btnLogin"));
 		loginBtn.click();
 	}
 
 	public void verifyLoginPage() {
-		WebElement usernameInput = driver.findElement(By.xpath("//input[@id='txtUsername']"));
-		WebElement passwordInput = driver.findElement(By.id("txtPassword"));
-
 		System.out.println(usernameInput.isDisplayed());
 		System.out.println(passwordInput.isDisplayed());
-
 	}
 
 	public void verifyInvalidLoginError() {
-		WebElement invalidLoginError = driver.findElement(By.id("spanMessage"));
 		System.out.println(invalidLoginError.isDisplayed());
 	}
 
