@@ -1,0 +1,23 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Smoke Test Suite" verbose="1">
+
+	<groups>
+		<run>
+			<exclude name="Regression" />
+		</run>
+	</groups>
+
+
+	<test name="Login Test">
+		<classes>
+			<class name="com.automation.tests.LoginTest" />
+		</classes>
+	</test>
+
+	<test name="Add Employee Test">
+		<classes>
+			<class name="com.automation.tests.AddEmployeeTest" />
+		</classes>
+	</test>
+</suite>
